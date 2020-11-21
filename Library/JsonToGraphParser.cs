@@ -8,16 +8,17 @@ namespace JsonToGraph.Library
 {
     public class JsonToGraphParser
     {
-        public GraphNode GetNode(string json)
+        public GraphNode GetRootNode(string json)
         {
-            GraphNode node = new GraphNode();
+            GraphNode node = null;
             JToken root = JToken.Parse(json);
-            switch (root.Type)
+            switch (root?.Type)
             {
                 case JTokenType.Object:
                     node = ParseObject(root as JObject);
                     break;
                 case JTokenType.Array:
+                    node = new GraphNode();
                     node.Type = JTokenType.Array;
                     node.ChildNodes.AddRange(ParseArray(root as JArray));
                     break;
@@ -71,7 +72,7 @@ namespace JsonToGraph.Library
 
         internal GraphNode ParseObject(JObject token)
         {
-            if (token == null && token.Type != JTokenType.Object && token.HasValues == false) return null;
+            if (token == null || token.Type != JTokenType.Object || token.HasValues == false) return null;
 
             GraphNode node = GraphNode.GetInstance(token.Path, nameof(ParseObject), token.Type);
             node.ChildrenCount = token.Count;
