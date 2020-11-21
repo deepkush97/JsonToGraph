@@ -1,7 +1,7 @@
 ﻿using JsonToGraph.Library;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Library.Test
+namespace JsonToGraph.Library.Test
 {
     [TestClass]
     public class JsonToGraphParser_Test

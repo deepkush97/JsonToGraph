@@ -4,7 +4,7 @@ using JsonToGraph.Library;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace JsonToGraphConsoleApp
+namespace JsonToGraph.ConsoleApp
 {
     class Program
     {
